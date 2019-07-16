@@ -1,6 +1,6 @@
 # CopyRig
 
-Simple copy Rig to Auto Rig Pro reference rig. Applies position and scale of the known bones of an imported rig to a the auto rig pro reference rig.
+Copy an imported rig to the auto rig pro reference rig. Applies position and scale of the known bones of an imported rig to a the auto rig pro reference rig.
 
 ## Usage
 Apply pos, rot, scale to everything. ;-) Select the iported rig, go to edit mode, press copy. Select the reference rig, go to edit mode, press paste. 
