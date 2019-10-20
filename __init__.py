@@ -99,13 +99,17 @@ class CopyRig:
         bones = bpy.context.active_object.data.edit_bones
         for skel in cls._skels:
             if skel.check(bones):
-                cls.dict = skel.convert(bones)
-                return skel.info()
+                cls._dict = skel.convert(bones)
+                return skel.info
+        # nothing found, print template
+        for bone in bones:
+            print ('\'' + bone.name + '\': ')
         return None
 
     @classmethod
     def paste(cls):
         for bone in bpy.context.active_object.data.edit_bones:
+            print ('\'' + bone.name + '\': ')
             if bone.layers[17] and bone.name in cls._dict:
                 bone.head, bone.tail, bone.roll = cls._dict[bone.name]
 
