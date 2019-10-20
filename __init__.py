@@ -87,7 +87,7 @@ bpy.utils.register_class(CPYRIG_PT_Panel)
 
 class CopyRig:
 
-    _skels = [sourceskels.MHGameEngine()]
+    _skels = [sourceskels.MHGameEngine(), sourceskels.MHDefault()]
     _dict = {}
 
     @classmethod
@@ -102,12 +102,14 @@ class CopyRig:
                 cls._dict = skel.convert(bones)
                 return skel.info
         # nothing found, print template
+        print('------ unknown rig ------')
         for bone in bones:
             print ('\'' + bone.name + '\': ')
         return None
 
     @classmethod
     def paste(cls):
+        print('------ paste to ------')
         for bone in bpy.context.active_object.data.edit_bones:
             print ('\'' + bone.name + '\': ')
             if bone.layers[17] and bone.name in cls._dict:

@@ -279,8 +279,8 @@ class MHDefault(SourceSkel):
         for bone in bones:
             b[bone.name] = [bone.head[0], bone.head[1], bone.head[2]], [bone.tail[0], bone.tail[1], bone.tail[2]], bone.roll
         dict = {
-            # 'arm_ref.l': 
-            # 'arm_ref.r': 
+            'arm_ref.l': (b['upperarm01.L'][0], b['upperarm02.L'][1], b['upperarm02.L'][2]),
+            'arm_ref.r':  (b['upperarm01.R'][0], b['upperarm02.R'][1], b['upperarm02.R'][2]),
             # 'c_eye_ref.l': 
             # 'c_eye_ref.r': 
             # 'c_eye_ref_track.l': 
@@ -335,19 +335,19 @@ class MHDefault(SourceSkel):
             # 'foot_heel_ref.r': 
             # 'foot_ref.l': 
             # 'foot_ref.r': 
-            # 'forearm_ref.l': 
-            # 'forearm_ref.r': 
-            # 'hand_ref.l': 
-            # 'hand_ref.r': 
-            # 'head_ref.x': 
-            # 'index1_base_ref.l': 
-            # 'index1_base_ref.r': 
-            # 'index1_ref.l': 
-            # 'index1_ref.r': 
-            # 'index2_ref.l': 
-            # 'index2_ref.r': 
-            # 'index3_ref.l': 
-            # 'index3_ref.r': 
+            'forearm_ref.l': (b['lowerarm01.L'][0], b['lowerarm02.L'][1], b['lowerarm02.L'][2]),
+            'forearm_ref.r':  (b['lowerarm01.R'][0], b['lowerarm02.R'][1], b['lowerarm02.R'][2]),
+            'hand_ref.l': b['wrist.L'],
+            'hand_ref.r': b['wrist.R'],
+            'head_ref.x': b['head'],
+            'index1_base_ref.l': b['metacarpal1.L'],
+            'index1_base_ref.r': b['metacarpal1.R'],
+            'index1_ref.l': b['finger2-1.L'],
+            'index1_ref.r': b['finger2-1.R'],
+            'index2_ref.l': b['finger2-2.L'],
+            'index2_ref.r': b['finger2-2.R'],
+            'index3_ref.l': b['finger2-3.L'],
+            'index3_ref.r': b['finger2-3.R'],
             # 'jaw_ref.x': 
             # 'leg_ref.l': 
             # 'leg_ref.r': 
@@ -367,37 +367,37 @@ class MHDefault(SourceSkel):
             # 'lips_top_ref.l': 
             # 'lips_top_ref.r': 
             # 'lips_top_ref.x': 
-            # 'middle1_base_ref.l': 
-            # 'middle1_base_ref.r': 
-            # 'middle1_ref.l': 
-            # 'middle1_ref.r': 
-            # 'middle2_ref.l': 
-            # 'middle2_ref.r': 
-            # 'middle3_ref.l': 
-            # 'middle3_ref.r': 
-            # 'neck_ref.x': 
+            'middle1_base_ref.l': b['metacarpal2.L'],
+            'middle1_base_ref.r': b['metacarpal2.R'],
+            'middle1_ref.l': b['finger3-1.L'],
+            'middle1_ref.r': b['finger3-1.R'],
+            'middle2_ref.l': b['finger3-2.L'],
+            'middle2_ref.r': b['finger3-2.R'],
+            'middle3_ref.l': b['finger3-3.L'],
+            'middle3_ref.r': b['finger3-3.R'],
+            'neck_ref.x': (b['neck01'][0], b['neck03'][1], b['neck02'][2]),
             # 'nose_01_ref.x': 
             # 'nose_02_ref.x': 
             # 'nose_03_ref.x': 
-            # 'pinky1_base_ref.l': 
-            # 'pinky1_base_ref.r': 
-            # 'pinky1_ref.l': 
-            # 'pinky1_ref.r': 
-            # 'pinky2_ref.l': 
-            # 'pinky2_ref.r': 
-            # 'pinky3_ref.l': 
-            # 'pinky3_ref.r': 
-            # 'ring1_base_ref.l': 
-            # 'ring1_base_ref.r': 
-            # 'ring1_ref.l': 
-            # 'ring1_ref.r': 
-            # 'ring2_ref.l': 
-            # 'ring2_ref.r': 
-            # 'ring3_ref.l': 
-            # 'ring3_ref.r': 
-            # 'root_ref.x': 
-            # 'shoulder_ref.l': 
-            # 'shoulder_ref.r': 
+            'pinky1_base_ref.l': b['metacarpal4.L'],
+            'pinky1_base_ref.r': b['metacarpal4.R'],
+            'pinky1_ref.l': b['finger5-1.L'],
+            'pinky1_ref.r': b['finger5-1.R'],
+            'pinky2_ref.l': b['finger5-2.L'],
+            'pinky2_ref.r': b['finger5-2.R'],
+            'pinky3_ref.l': b['finger5-3.L'],
+            'pinky3_ref.r': b['finger5-3.R'],
+            'ring1_base_ref.l': b['metacarpal3.L'],
+            'ring1_base_ref.r': b['metacarpal3.R'],
+            'ring1_ref.l': b['finger4-1.L'],
+            'ring1_ref.r': b['finger4-1.R'],
+            'ring2_ref.l': b['finger4-2.L'],
+            'ring2_ref.r': b['finger4-2.R'],
+            'ring3_ref.l': b['finger4-3.L'],
+            'ring3_ref.r': b['finger4-3.R'],
+            'root_ref.x': (b['spine05'][0], b['spine04'][1], b['spine04'][2]),
+            'shoulder_ref.l': (b['clavicle.L'][0], b['shoulder01.L'][1], b['shoulder01.L'][2]),
+            'shoulder_ref.r': (b['clavicle.R'][0], b['shoulder01.R'][1], b['shoulder01.R'][2]),
             # 'spine_01_ref.x': 
             # 'spine_02_ref.x': 
             # 'teeth_bot_ref.l': 
@@ -406,21 +406,21 @@ class MHDefault(SourceSkel):
             # 'teeth_top_ref.l': 
             # 'teeth_top_ref.r': 
             # 'teeth_top_ref.x': 
-            # 'thigh_ref.l': 
-            # 'thigh_ref.r': 
-            # 'thumb1_ref.l': 
-            # 'thumb1_ref.r': 
-            # 'thumb2_ref.l': 
-            # 'thumb2_ref.r': 
-            # 'thumb3_ref.l': 
-            # 'thumb3_ref.r': 
+            'thigh_ref.l': (b['upperleg01.L'][0], b['upperleg02.L'][1], b['upperleg02.L'][2]),
+            'thigh_ref.r': (b['upperleg01.R'][0], b['upperleg02.R'][1], b['upperleg02.R'][2]),
+            'thumb1_ref.l': b['finger1-1.L'],
+            'thumb1_ref.r': b['finger1-1.R'],
+            'thumb2_ref.l': b['finger1-2.L'],
+            'thumb2_ref.r': b['finger1-2.R'],
+            'thumb3_ref.l': b['finger1-3.L'],
+            'thumb3_ref.r': b['finger1-3.R'],
             # 'toes_end_ref.l': 
             # 'toes_end_ref.r': 
             # 'toes_ref.l': 
             # 'toes_ref.r': 
-            # 'tong_01_ref.x': 
-            # 'tong_02_ref.x': 
-            # 'tong_03_ref.x': 
+            'tong_01_ref.x': b['tongue01'],
+            'tong_02_ref.x': b['tongue02'],
+            'tong_03_ref.x': (b['tongue03'][0], b['tongue04'][1], b['tongue03'][2]),
         }
         return dict
 
