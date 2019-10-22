@@ -109,11 +109,15 @@ class CopyRig:
 
     @classmethod
     def paste(cls):
-        print('------ paste to ------')
         for bone in bpy.context.active_object.data.edit_bones:
-            print ('\'' + bone.name + '\': ')
             if bone.layers[17] and bone.name in cls._dict:
-                bone.head, bone.tail, bone.roll = cls._dict[bone.name]
+                head, tail, roll = cls._dict[bone.name]
+                if head:
+                    bone.head = head
+                if tail: 
+                    bone.tail = tail
+                if roll:
+                    bone.roll = roll
 
 
 classes = (

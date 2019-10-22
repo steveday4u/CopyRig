@@ -11,6 +11,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
+import mathutils
 
 class SourceSkel:
 
@@ -100,7 +101,6 @@ class MHGameEngine(SourceSkel):
 
 class MHDefault(SourceSkel):
     info = 'Makehuman Default Rig'
-
     _boneset = {
         'breast.L',
         'breast.R',
@@ -274,6 +274,7 @@ class MHDefault(SourceSkel):
                 num -= 1
         return num == 0
 
+
     def convert(self, bones):
         b = {}
         for bone in bones:
@@ -281,10 +282,6 @@ class MHDefault(SourceSkel):
         dict = {
             'arm_ref.l': (b['upperarm01.L'][0], b['upperarm02.L'][1], b['upperarm02.L'][2]),
             'arm_ref.r':  (b['upperarm01.R'][0], b['upperarm02.R'][1], b['upperarm02.R'][2]),
-            # 'c_eye_ref.l': 
-            # 'c_eye_ref.r': 
-            # 'c_eye_ref_track.l': 
-            # 'c_eye_ref_track.r': 
             # 'cheek_inflate_ref.l': 
             # 'cheek_inflate_ref.r': 
             # 'cheek_smile_ref.l': 
@@ -305,28 +302,29 @@ class MHDefault(SourceSkel):
             # 'eyebrow_03_ref.r': 
             # 'eyebrow_full_ref.l': 
             # 'eyebrow_full_ref.r': 
-            # 'eyelid_bot_01_ref.l': 
-            # 'eyelid_bot_01_ref.r': 
-            # 'eyelid_bot_02_ref.l': 
-            # 'eyelid_bot_02_ref.r': 
-            # 'eyelid_bot_03_ref.l': 
-            # 'eyelid_bot_03_ref.r': 
-            # 'eyelid_bot_ref.l': 
-            # 'eyelid_bot_ref.r': 
-            # 'eyelid_corner_01_ref.l': 
-            # 'eyelid_corner_01_ref.r': 
-            # 'eyelid_corner_02_ref.l': 
-            # 'eyelid_corner_02_ref.r': 
-            # 'eyelid_top_01_ref.l': 
-            # 'eyelid_top_01_ref.r': 
-            # 'eyelid_top_02_ref.l': 
-            # 'eyelid_top_02_ref.r': 
-            # 'eyelid_top_03_ref.l': 
-            # 'eyelid_top_03_ref.r': 
-            # 'eyelid_top_ref.l': 
-            # 'eyelid_top_ref.r': 
-            # 'eye_offset_ref.l': 
-            # 'eye_offset_ref.r': 
+            # fix eye center
+            'eyelid_bot_01_ref.l': (b['eye.L'][0], None, None),
+            'eyelid_bot_01_ref.r': (b['eye.R'][0], None, None),
+            'eyelid_bot_02_ref.l': (b['eye.L'][0], None, None),
+            'eyelid_bot_02_ref.r': (b['eye.R'][0], None, None),
+            'eyelid_bot_03_ref.l': (b['eye.L'][0], None, None),
+            'eyelid_bot_03_ref.r': (b['eye.R'][0], None, None),
+            'eyelid_bot_ref.l': (b['eye.L'][0], None, None),
+            'eyelid_bot_ref.r': (b['eye.R'][0], None, None),
+            'eyelid_corner_01_ref.l': (b['eye.L'][0], None, None),
+            'eyelid_corner_01_ref.r': (b['eye.R'][0], None, None),
+            'eyelid_corner_02_ref.l': (b['eye.L'][0], None, None),
+            'eyelid_corner_02_ref.r': (b['eye.R'][0], None, None),
+            'eyelid_top_01_ref.l': (b['eye.L'][0], None, None),
+            'eyelid_top_01_ref.r': (b['eye.R'][0], None, None),
+            'eyelid_top_02_ref.l': (b['eye.L'][0], None, None),
+            'eyelid_top_02_ref.r': (b['eye.R'][0], None, None),
+            'eyelid_top_03_ref.l': (b['eye.L'][0], None, None),
+            'eyelid_top_03_ref.r': (b['eye.R'][0], None, None),
+            'eyelid_top_ref.l': (b['eye.L'][0], None, None),
+            'eyelid_top_ref.r': (b['eye.R'][0], None, None),
+            'eye_offset_ref.l': (b['eye.L'][0], None, None),
+            'eye_offset_ref.r': (b['eye.R'][0], None, None),
             # 'foot_bank_01_ref.l': 
             # 'foot_bank_01_ref.r': 
             # 'foot_bank_02_ref.l': 
@@ -396,8 +394,9 @@ class MHDefault(SourceSkel):
             'ring3_ref.l': b['finger4-3.L'],
             'ring3_ref.r': b['finger4-3.R'],
             'root_ref.x': (b['spine05'][0], b['spine04'][1], b['spine04'][2]),
-            'shoulder_ref.l': (b['clavicle.L'][0], b['shoulder01.L'][1], b['shoulder01.L'][2]),
-            'shoulder_ref.r': (b['clavicle.R'][0], b['shoulder01.R'][1], b['shoulder01.R'][2]),
+            # shoulder rotation seems a bit strage in MH rig
+            'shoulder_ref.l': (b['clavicle.L'][0], b['shoulder01.L'][1], None),
+            'shoulder_ref.r': (b['clavicle.R'][0], b['shoulder01.R'][1], None),
             # 'spine_01_ref.x': 
             # 'spine_02_ref.x': 
             # 'teeth_bot_ref.l': 
@@ -452,3 +451,7 @@ class MHDefault(SourceSkel):
         }
         return dict
 
+def shorten(origin, end, factor):
+    o = mathutils.Vector(origin)
+    e = mathutils.Vector(end)
+    return (e - o) / factor + o
