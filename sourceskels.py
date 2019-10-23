@@ -397,8 +397,8 @@ class MHDefault(SourceSkel):
             # shoulder rotation seems a bit strage in MH rig
             'shoulder_ref.l': (b['clavicle.L'][0], b['shoulder01.L'][1], None),
             'shoulder_ref.r': (b['clavicle.R'][0], b['shoulder01.R'][1], None),
-            # 'spine_01_ref.x': 
-            # 'spine_02_ref.x': 
+            'spine_01_ref.x': b['spine03'],
+            'spine_02_ref.x': (b['spine02'][0], b['spine01'][1], b['spine01'][2]),
             # 'teeth_bot_ref.l': 
             # 'teeth_bot_ref.r': 
             # 'teeth_bot_ref.x': 
