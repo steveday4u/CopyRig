@@ -13,6 +13,7 @@
 
 import mathutils
 
+
 class SourceSkel:
 
     info = ''
@@ -274,34 +275,39 @@ class MHDefault(SourceSkel):
                 num -= 1
         return num == 0
 
-
     def convert(self, bones):
         b = {}
         for bone in bones:
-            b[bone.name] = [bone.head[0], bone.head[1], bone.head[2]], [bone.tail[0], bone.tail[1], bone.tail[2]], bone.roll
+            b[bone.name] = [bone.head[0], bone.head[1], bone.head[2]], [
+                bone.tail[0], bone.tail[1], bone.tail[2]], bone.roll
+        # get a decent distance in scale
+        dist = distance(b['oris05'][0], b['oris05'][1])
+
         dict = {
             'arm_ref.l': (b['upperarm01.L'][0], b['upperarm02.L'][1], b['upperarm02.L'][2]),
             'arm_ref.r':  (b['upperarm01.R'][0], b['upperarm02.R'][1], b['upperarm02.R'][2]),
-            # 'cheek_inflate_ref.l': 
-            # 'cheek_inflate_ref.r': 
-            # 'cheek_smile_ref.l': 
-            # 'cheek_smile_ref.r': 
-            # 'chin_01_ref.x': 
-            # 'chin_02_ref.x': 
-            # 'ear_01_ref.l': 
-            # 'ear_01_ref.r': 
-            # 'ear_02_ref.l': 
-            # 'ear_02_ref.r': 
-            # 'eyebrow_01_end_ref.l': 
-            # 'eyebrow_01_end_ref.r': 
-            # 'eyebrow_01_ref.l': 
-            # 'eyebrow_01_ref.r': 
-            # 'eyebrow_02_ref.l': 
-            # 'eyebrow_02_ref.r': 
-            # 'eyebrow_03_ref.l': 
-            # 'eyebrow_03_ref.r': 
-            # 'eyebrow_full_ref.l': 
-            # 'eyebrow_full_ref.r': 
+            # 'bot_bend_ref.l':
+            # 'bot_bend_ref.r':
+            # 'cheek_inflate_ref.l':
+            # 'cheek_inflate_ref.r':
+            # 'cheek_smile_ref.l':
+            # 'cheek_smile_ref.r':
+            'chin_01_ref.x':  ([0, b['oris06.L'][1][1], b['oris06.L'][1][2]], [0, b['oris06.L'][1][1] - dist, b['oris06.L'][1][2]], None),
+            'chin_02_ref.x': (b['special04'][0], [b['special04'][0][0], b['special04'][0][1], b['special04'][0][2] - dist], None),
+            # 'ear_01_ref.l':
+            # 'ear_01_ref.r':
+            # 'ear_02_ref.l':
+            # 'ear_02_ref.r':
+            # 'eyebrow_01_end_ref.l':
+            # 'eyebrow_01_end_ref.r':
+            # 'eyebrow_01_ref.l':
+            # 'eyebrow_01_ref.r':
+            # 'eyebrow_02_ref.l':
+            # 'eyebrow_02_ref.r':
+            # 'eyebrow_03_ref.l':
+            # 'eyebrow_03_ref.r':
+            # 'eyebrow_full_ref.l':
+            # 'eyebrow_full_ref.r':
             # fix eye center
             'eyelid_bot_01_ref.l': (b['eye.L'][0], None, None),
             'eyelid_bot_01_ref.r': (b['eye.R'][0], None, None),
@@ -325,14 +331,14 @@ class MHDefault(SourceSkel):
             'eyelid_top_ref.r': (b['eye.R'][0], None, None),
             'eye_offset_ref.l': (b['eye.L'][0], None, None),
             'eye_offset_ref.r': (b['eye.R'][0], None, None),
-            # 'foot_bank_01_ref.l': 
-            # 'foot_bank_01_ref.r': 
-            # 'foot_bank_02_ref.l': 
-            # 'foot_bank_02_ref.r': 
-            # 'foot_heel_ref.l': 
-            # 'foot_heel_ref.r': 
-            # 'foot_ref.l': 
-            # 'foot_ref.r': 
+            # 'foot_bank_01_ref.l':
+            # 'foot_bank_01_ref.r':
+            # 'foot_bank_02_ref.l':
+            # 'foot_bank_02_ref.r':
+            # 'foot_heel_ref.l':
+            # 'foot_heel_ref.r':
+            # 'foot_ref.l':
+            # 'foot_ref.r':
             'forearm_ref.l': (b['lowerarm01.L'][0], b['lowerarm02.L'][1], b['lowerarm02.L'][2]),
             'forearm_ref.r':  (b['lowerarm01.R'][0], b['lowerarm02.R'][1], b['lowerarm02.R'][2]),
             'hand_ref.l': b['wrist.L'],
@@ -346,25 +352,27 @@ class MHDefault(SourceSkel):
             'index2_ref.r': b['finger2-2.R'],
             'index3_ref.l': b['finger2-3.L'],
             'index3_ref.r': b['finger2-3.R'],
-            # 'jaw_ref.x': 
-            # 'leg_ref.l': 
-            # 'leg_ref.r': 
-            # 'lips_bot_01_ref.l': 
-            # 'lips_bot_01_ref.r': 
-            # 'lips_bot_ref.l': 
-            # 'lips_bot_ref.r': 
-            # 'lips_bot_ref.x': 
-            # 'lips_corner_mini_ref.l': 
-            # 'lips_corner_mini_ref.r': 
-            # 'lips_roll_bot_ref.x': 
-            # 'lips_roll_top_ref.x': 
-            # 'lips_smile_ref.l': 
-            # 'lips_smile_ref.r': 
-            # 'lips_top_01_ref.l': 
-            # 'lips_top_01_ref.r': 
-            # 'lips_top_ref.l': 
-            # 'lips_top_ref.r': 
-            # 'lips_top_ref.x': 
+            'jaw_ref.x': (b['jaw'][0], b['special04'][1], b['jaw'][2]),
+            'leg_ref.l': (b['lowerleg01.L'][0], b['lowerleg02.L'][1], b['lowerleg02.L'][2]),
+            'leg_ref.r': (b['lowerleg01.R'][0], b['lowerleg02.R'][1], b['lowerleg02.R'][2]),
+            # 'lips_bot_01_ref.l':
+            # 'lips_bot_01_ref.r':
+            # 'lips_bot_ref.l':
+            # 'lips_bot_ref.r':
+            # 'lips_bot_ref.x':
+            # 'lips_corner_mini_ref.l':
+            # 'lips_corner_mini_ref.r':
+            'lips_roll_bot_ref.x': ([b['oris01'][0][0], b['oris01'][0][1] - dist, b['oris01'][0][2]],
+                                    [b['oris01'][0][0], b['oris01'][0][1] - dist - dist / 2, b['oris01'][0][2]], None),
+            'lips_roll_top_ref.x': ([b['oris06'][0][0], b['oris06'][0][1] - dist, b['oris06'][0][2]],
+                                    [b['oris06'][0][0], b['oris06'][0][1] - dist - dist / 2, b['oris06'][0][2]], None),
+            # 'lips_smile_ref.l':
+            # 'lips_smile_ref.r':
+            # 'lips_top_01_ref.l':
+            # 'lips_top_01_ref.r':
+            # 'lips_top_ref.l':
+            # 'lips_top_ref.r':
+            # 'lips_top_ref.x':
             'middle1_base_ref.l': b['metacarpal2.L'],
             'middle1_base_ref.r': b['metacarpal2.R'],
             'middle1_ref.l': b['finger3-1.L'],
@@ -374,9 +382,9 @@ class MHDefault(SourceSkel):
             'middle3_ref.l': b['finger3-3.L'],
             'middle3_ref.r': b['finger3-3.R'],
             'neck_ref.x': (b['neck01'][0], b['neck03'][1], b['neck02'][2]),
-            # 'nose_01_ref.x': 
-            # 'nose_02_ref.x': 
-            # 'nose_03_ref.x': 
+            # 'nose_01_ref.x':
+            # 'nose_02_ref.x':
+            # 'nose_03_ref.x':
             'pinky1_base_ref.l': b['metacarpal4.L'],
             'pinky1_base_ref.r': b['metacarpal4.R'],
             'pinky1_ref.l': b['finger5-1.L'],
@@ -399,12 +407,12 @@ class MHDefault(SourceSkel):
             'shoulder_ref.r': (b['clavicle.R'][0], b['shoulder01.R'][1], None),
             'spine_01_ref.x': b['spine03'],
             'spine_02_ref.x': (b['spine02'][0], b['spine01'][1], b['spine01'][2]),
-            # 'teeth_bot_ref.l': 
-            # 'teeth_bot_ref.r': 
-            # 'teeth_bot_ref.x': 
-            # 'teeth_top_ref.l': 
-            # 'teeth_top_ref.r': 
-            # 'teeth_top_ref.x': 
+            # 'teeth_bot_ref.l':
+            # 'teeth_bot_ref.r':
+            # 'teeth_bot_ref.x':
+            # 'teeth_top_ref.l':
+            # 'teeth_top_ref.r':
+            # 'teeth_top_ref.x':
             'thigh_ref.l': (b['upperleg01.L'][0], b['upperleg02.L'][1], b['upperleg02.L'][2]),
             'thigh_ref.r': (b['upperleg01.R'][0], b['upperleg02.R'][1], b['upperleg02.R'][2]),
             'thumb1_ref.l': b['finger1-1.L'],
@@ -441,17 +449,22 @@ class MHDefault(SourceSkel):
             'toes_pinky2_ref.r': b['toe5-2.R'],
             'toes_pinky3_ref.l': b['toe5-3.L'],
             'toes_pinky3_ref.r': b['toe5-3.R'],
-            # 'toes_end_ref.l': 
-            # 'toes_end_ref.r': 
-            # 'toes_ref.l': 
-            # 'toes_ref.r': 
+            # 'toes_end_ref.l':
+            # 'toes_end_ref.r':
+            # 'toes_ref.l':
+            # 'toes_ref.r':
             'tong_01_ref.x': b['tongue01'],
             'tong_02_ref.x': b['tongue02'],
             'tong_03_ref.x': (b['tongue03'][0], b['tongue04'][1], b['tongue03'][2]),
         }
         return dict
 
+
 def shorten(origin, end, factor):
     o = mathutils.Vector(origin)
     e = mathutils.Vector(end)
     return (e - o) / factor + o
+
+
+def distance(p1, p2):
+    return (mathutils.Vector(p1) - mathutils.Vector(p2)).length
