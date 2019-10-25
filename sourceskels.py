@@ -286,12 +286,15 @@ class MHDefault(SourceSkel):
         # calculate foot tail
         ft_l = [b['toe2-1.L'][0][0] + (b['toe3-1.L'][0][0] - b['toe2-1.L'][0][0]) / 2, b['toe5-1.L'][0][1], b['toe2-3.L'][1][2]]
         ft_r = [b['toe2-1.R'][0][0] + (b['toe3-1.R'][0][0] - b['toe2-1.R'][0][0]) / 2, b['toe5-1.R'][0][1], b['toe2-3.R'][1][2]]
+        # bottom bone calculation: just but it somewhere between the hip and the center
+        bt_l = [b['pelvis.L'][1][0] - b['pelvis.L'][1][0] / 4, b['root'][0][1] + dist * 2, b['pelvis.L'][1][2]]
+        bt_r = [b['pelvis.R'][1][0] - b['pelvis.R'][1][0] / 4, b['root'][0][1] + dist * 2, b['pelvis.R'][1][2]]
 
         dict = {
             'arm_ref.l': (b['upperarm01.L'][0], b['upperarm02.L'][1], b['upperarm02.L'][2]),
             'arm_ref.r':  (b['upperarm01.R'][0], b['upperarm02.R'][1], b['upperarm02.R'][2]),
-            # 'bot_bend_ref.l':
-            # 'bot_bend_ref.r':
+            'bot_bend_ref.l': (bt_l, [bt_l[0], bt_l[1] + dist * 3, bt_l[2]], 0),
+            'bot_bend_ref.r': (bt_r, [bt_r[0], bt_r[1] + dist * 3, bt_r[2]], 0),
             # 'cheek_inflate_ref.l':
             # 'cheek_inflate_ref.r':
             # 'cheek_smile_ref.l':
@@ -386,8 +389,8 @@ class MHDefault(SourceSkel):
             'middle3_ref.l': b['finger3-3.L'],
             'middle3_ref.r': b['finger3-3.R'],
             'neck_ref.x': (b['neck01'][0], b['neck03'][1], b['neck02'][2]),
-            # 'nose_01_ref.x':
-            # 'nose_02_ref.x':
+            'nose_01_ref.x': ([0, b['levator06.L'][1][1] - dist / 2, b['levator06.L'][1][2]], [0, b['levator06.L'][1][1] - dist * 1.5, b['levator06.L'][1][2]], 0),
+            'nose_02_ref.x': ([0, b['levator06.L'][0][1], b['levator06.L'][0][2]], [0, b['levator06.L'][0][1] - dist, b['levator06.L'][0][2]], 0),
             # 'nose_03_ref.x':
             'pinky1_base_ref.l': b['metacarpal4.L'],
             'pinky1_base_ref.r': b['metacarpal4.R'],
