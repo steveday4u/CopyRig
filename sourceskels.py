@@ -283,6 +283,10 @@ class MHDefault(SourceSkel):
         # get a decent distance in scale
         dist = distance(b['oris05'][0], b['oris05'][1])
 
+        # calculate foot tail
+        ft_l = [b['toe2-1.L'][0][0] + (b['toe3-1.L'][0][0] - b['toe2-1.L'][0][0]) / 2, b['toe5-1.L'][0][1], b['toe2-3.L'][1][2]]
+        ft_r = [b['toe2-1.R'][0][0] + (b['toe3-1.R'][0][0] - b['toe2-1.R'][0][0]) / 2, b['toe5-1.R'][0][1], b['toe2-3.R'][1][2]]
+
         dict = {
             'arm_ref.l': (b['upperarm01.L'][0], b['upperarm02.L'][1], b['upperarm02.L'][2]),
             'arm_ref.r':  (b['upperarm01.R'][0], b['upperarm02.R'][1], b['upperarm02.R'][2]),
@@ -337,8 +341,8 @@ class MHDefault(SourceSkel):
             # 'foot_bank_02_ref.r':
             # 'foot_heel_ref.l':
             # 'foot_heel_ref.r':
-            # 'foot_ref.l':
-            # 'foot_ref.r':
+            'foot_ref.l': (b['foot.L'][0], ft_l, b['foot.L'][2]),
+            'foot_ref.r': (b['foot.R'][0], ft_r, b['foot.R'][2]),
             'forearm_ref.l': (b['lowerarm01.L'][0], b['lowerarm02.L'][1], b['lowerarm02.L'][2]),
             'forearm_ref.r':  (b['lowerarm01.R'][0], b['lowerarm02.R'][1], b['lowerarm02.R'][2]),
             'hand_ref.l': b['wrist.L'],
@@ -364,8 +368,8 @@ class MHDefault(SourceSkel):
             # 'lips_corner_mini_ref.r':
             'lips_roll_bot_ref.x': ([b['oris01'][0][0], b['oris01'][0][1] - dist, b['oris01'][0][2]],
                                     [b['oris01'][0][0], b['oris01'][0][1] - dist - dist / 2, b['oris01'][0][2]], None),
-            'lips_roll_top_ref.x': ([b['oris06'][0][0], b['oris06'][0][1] - dist, b['oris06'][0][2]],
-                                    [b['oris06'][0][0], b['oris06'][0][1] - dist - dist / 2, b['oris06'][0][2]], None),
+            'lips_roll_top_ref.x': ([b['oris06'][1][0], b['oris06'][1][1] - dist, b['oris06'][1][2]],
+                                    [b['oris06'][1][0], b['oris06'][1][1] - dist - dist / 2, b['oris06'][1][2]], None),
             # 'lips_smile_ref.l':
             # 'lips_smile_ref.r':
             # 'lips_top_01_ref.l':
@@ -451,8 +455,8 @@ class MHDefault(SourceSkel):
             'toes_pinky3_ref.r': b['toe5-3.R'],
             # 'toes_end_ref.l':
             # 'toes_end_ref.r':
-            # 'toes_ref.l':
-            # 'toes_ref.r':
+            'toes_ref.l': (ft_l, [ft_l[0], b['toe1-2.L'][1][1], ft_l[2]], b['toe3-1.L'][2]),
+            'toes_ref.r': (ft_r, [ft_r[0], b['toe1-2.R'][1][1], ft_r[2]], b['toe3-1.R'][2]),
             'tong_01_ref.x': b['tongue01'],
             'tong_02_ref.x': b['tongue02'],
             'tong_03_ref.x': (b['tongue03'][0], b['tongue04'][1], b['tongue03'][2]),
