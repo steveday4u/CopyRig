@@ -458,8 +458,8 @@ class MHDefault(SourceSkel):
             'toes_pinky3_ref.r': b['toe5-3.R'],
             # 'toes_end_ref.l':
             # 'toes_end_ref.r':
-            'toes_ref.l': (ft_l, [ft_l[0], b['toe1-2.L'][1][1], ft_l[2]], b['toe3-1.L'][2]),
-            'toes_ref.r': (ft_r, [ft_r[0], b['toe1-2.R'][1][1], ft_r[2]], b['toe3-1.R'][2]),
+            'toes_ref.l': (ft_l, [ft_l[0], b['toe1-2.L'][1][1], ft_l[2]], None),
+            'toes_ref.r': (ft_r, [ft_r[0], b['toe1-2.R'][1][1], ft_r[2]], None),
             'tong_01_ref.x': b['tongue01'],
             'tong_02_ref.x': b['tongue02'],
             'tong_03_ref.x': (b['tongue03'][0], b['tongue04'][1], b['tongue03'][2]),
